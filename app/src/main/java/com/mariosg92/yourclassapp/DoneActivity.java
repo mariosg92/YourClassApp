@@ -17,8 +17,9 @@ import static com.mariosg92.yourclassapp.RegisterActivity.EXTRA_REGISTERDONE;
 public class DoneActivity extends AppCompatActivity {
 
     private TextView txt_message;
-
     private FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +27,20 @@ public class DoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_done);
 
         txt_message = findViewById(R.id.txt_message);
+
         Intent intent = getIntent();
         try{
-            String registerMessage = intent.getStringExtra(EXTRA_REGISTERDONE);
-            txt_message.setText(registerMessage);
+            String message = intent.getStringExtra(EXTRA_REGISTERDONE);
+            if(!message.isEmpty()){
+                txt_message.setText(message);
+            }
         }catch(Exception e){
-            String registerMessage = intent.getStringExtra(EXTRA_MAILRECOVER);
-            txt_message.setText(registerMessage);
+            String message2 = intent.getStringExtra(EXTRA_MAILRECOVER);
+            if(!message2.isEmpty()){
+                txt_message.setText(message2);
+            }
         }
-/*
-        if(!registerMessage.isEmpty()){
-            txt_message.setText(registerMessage);
-        }
-        */
+
         mAuth = FirebaseAuth.getInstance();
     }
 

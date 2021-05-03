@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class RegisterActivity extends AppCompatActivity {
 
     public static final String EXTRA_REGISTERDONE = "com.mariosg92.RegisterActivity.registerDone";
-
     private EditText edt_username;
     private EditText edt_email;
     private EditText edt_password;
