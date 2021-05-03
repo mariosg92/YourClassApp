@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecoveryActivity">
+
+    <EditText
+        android:id="@+id/edt_recoverMail"
+        android:layout_width="332dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/txt_recoverMsg"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/txt_recoverMsg"
+        app:layout_constraintTop_toBottomOf="@+id/txt_recoverMsg" />
+
+    <TextView
+        android:id="@+id/txt_recoverMsg"
+        android:layout_width="330dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="232dp"
+        android:text="Introduzca su correo para recuperar la contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_recover"
+        android:layout_width="130dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:text="RECUPERAR"
+        android:onClick="recoverPass"
+        app:layout_constraintEnd_toEndOf="@+id/edt_recoverMail"
+        app:layout_constraintStart_toStartOf="@+id/edt_recoverMail"
+        app:layout_constraintTop_toBottomOf="@+id/edt_recoverMail" />
+</androidx.constraintlayout.widget.ConstraintLayout>
