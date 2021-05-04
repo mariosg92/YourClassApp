@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">YourClassApp</string>
+    <string name="correo">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="conectar">CONECTAR</string>
+    <string name="recordar_pass">Recordar contraseña</string>
+    <string name="registro">REGISTRO</string>
+    <string name="recuperar">RECUPERAR</string>
+    <string name="introduzca_su_correo">Introduzca su correo</string>
+    <string name="recuperar_pass">Recuperar contraseña</string>
+    <string name="google">GOOGLE</string>
 </resources>

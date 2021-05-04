@@ -59,20 +59,24 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view) {
         String user = edt_username.getText().toString();
         String password = edt_password.getText().toString();
-        mAuth.signInWithEmailAndPassword(user, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Log.d("SIGNIN","signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            goWelcome(user);
-                        }else{
-                            Log.w("SIGNIN", "signInWithEmail:failure", task.getException());
-                            txt_error.setText("Por favor, introduzca unos datos válidos.");
+        if(!user.isEmpty() && !password.isEmpty()) {
+            mAuth.signInWithEmailAndPassword(user, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("SIGNIN", "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                goWelcome(user);
+                            } else {
+                                Log.w("SIGNIN", "signInWithEmail:failure", task.getException());
+                                txt_error.setText("Por favor, introduzca unos datos válidos");
+                            }
                         }
-                    }
-                });
+                    });
+        }else{
+            txt_error.setText("Introduzca un correo y contraseña");
+        }
     }
 
     public void goRecoverPass(View view) {

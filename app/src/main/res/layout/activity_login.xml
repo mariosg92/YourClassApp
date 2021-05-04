@@ -9,53 +9,54 @@
 
     <Button
         android:id="@+id/bt_signup"
-        android:layout_width="200dp"
+        android:layout_width="105dp"
         android:layout_height="36dp"
-        android:text="REGISTRO"
-        android:textSize="14sp"
+        android:layout_marginStart="14dp"
         android:onClick="signUp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/loginSignin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/loginSignin"
-        app:layout_constraintTop_toBottomOf="@+id/loginSignin"
-        app:layout_constraintVertical_bias="0.035" />
+        android:text="@string/registro"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/loginSignin"
+        app:layout_constraintEnd_toEndOf="@+id/loginPassword"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/loginSignin"
+        app:layout_constraintTop_toTopOf="@+id/loginSignin"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/loginUser"
-        android:layout_width="200dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="216dp"
         android:ems="10"
-        android:hint="Correo"
+        android:hint="@string/correo"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/loginPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/loginPassword"
-        android:layout_width="200dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="352dp"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/loginUser"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/loginUser" />
+        app:layout_constraintStart_toStartOf="@+id/loginUser"
+        app:layout_constraintTop_toBottomOf="@+id/loginUser" />
 
     <Button
         android:id="@+id/loginSignin"
-        android:layout_width="200dp"
+        android:layout_width="105dp"
         android:layout_height="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:onClick="login"
-        android:text="CONECTAR"
-        android:textSize="14sp"
+        android:text="@string/conectar"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/loginPassword"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/loginPassword"
@@ -65,8 +66,8 @@
         android:id="@+id/txt_recover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recordar contraseña"
         android:onClick="goRecoverPass"
+        android:text="@string/recordar_pass"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/loginSignin"
         app:layout_constraintEnd_toEndOf="@+id/loginPassword"
@@ -77,14 +78,28 @@
 
     <TextView
         android:id="@+id/txt_loginError"
-        android:layout_width="194dp"
-        android:layout_height="49dp"
+        android:layout_width="209dp"
+        android:layout_height="58dp"
         android:textAlignment="center"
         android:textColor="#FB0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bt_signup"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="@+id/bt_signup"
-        app:layout_constraintTop_toBottomOf="@+id/bt_signup"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/loginSignin"
+        app:layout_constraintTop_toBottomOf="@+id/bt_Google"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <Button
+        android:id="@+id/bt_Google"
+        android:layout_width="210dp"
+        android:layout_height="36dp"
+        android:backgroundTint="@color/teal_200"
+        android:drawableLeft="@mipmap/google"
+        android:gravity="center"
+        android:text="@string/google"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/bt_signup"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="@+id/loginSignin"
+        app:layout_constraintTop_toBottomOf="@+id/loginSignin" />
 </androidx.constraintlayout.widget.ConstraintLayout>
