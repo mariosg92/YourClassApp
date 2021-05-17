@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/menu_home" />
+        <item
+            android:title="@string/mis_clases"
+            android:id="@+id/nav_misclases"/>
+        <item
+            android:title="Alumnos"
+            android:id="@+id/nav_alumnos"/>
+        <item
+            android:title="">
+            <menu>
+                <item
+                    android:title="@string/desconectar"
+                    android:id="@+id/logOutMenu"/>
+            </menu>
+        </item>
+
+    </group>
+</menu>

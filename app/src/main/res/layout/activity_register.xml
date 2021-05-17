@@ -58,24 +58,37 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Registrarse"
         android:onClick="signUp"
+        android:text="Registrarse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/regPassConfirm"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/regPassConfirm"
         app:layout_constraintTop_toBottomOf="@+id/regPassConfirm"
-        app:layout_constraintVertical_bias="0.050000012" />
+        app:layout_constraintVertical_bias="0.157" />
 
     <TextView
         android:id="@+id/txt_error"
-        android:layout_width="238dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="295dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
         android:textAlignment="center"
         android:textColor="#FF0202"
+        app:layout_constraintBottom_toTopOf="@+id/regSignup"
         app:layout_constraintEnd_toEndOf="@+id/regSignup"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="@+id/regSignup" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="57dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/purple_500"
+        android:onClick="backToLogin"
+        app:layout_constraintEnd_toEndOf="@+id/regSignup"
         app:layout_constraintStart_toStartOf="@+id/regSignup"
-        app:layout_constraintTop_toBottomOf="@+id/regSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/regSignup"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

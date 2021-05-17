@@ -12,11 +12,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -29,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView errorText;
     private String[] campos = new String[4];
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +49,20 @@ public class RegisterActivity extends AppCompatActivity {
         edt_email = findViewById(R.id.regEmail);
         edt_password = findViewById(R.id.regPass);
         edt_passwordConfirm = findViewById(R.id.regPassConfirm);
+        db = FirebaseFirestore.getInstance();
 
     }
 
     public void signUp(View view) {
         String email = edt_email.getText().toString();
         String password = edt_password.getText().toString();
+        String username = edt_username.getText().toString();
         campos = new String[]{edt_username.getText().toString(), edt_email.getText().toString(),
                 edt_password.getText().toString(), edt_passwordConfirm.getText().toString()};
-        validation(campos, email, password);
+        validation(campos, email, password, username);
     }
 
-    public void validation(String campos[], String email, String password){
+    public void validation(String campos[], String email, String password, String username){
         if(campos[0].isEmpty() || campos[1].isEmpty() || campos[2].isEmpty() || campos[3].isEmpty()){
             errorText.setText("Rellene todos los campos.");
         }else if(!campos[2].equals(campos[3])){
@@ -62,12 +72,12 @@ public class RegisterActivity extends AppCompatActivity {
         }else if(!campos[2].matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$")){
             errorText.setText("La contraseña debe tener un mínimo de 8 caracteres, un número y una mayúscula.");
         }else{
-            register(email, password);
+            register(email, password, username);
         }
     }
 
 
-    public void register(String email, String password){
+    public void register(String email, String password, String username){
            mAuth.createUserWithEmailAndPassword(email, password)
                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                        @Override
@@ -75,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                                if (task.isSuccessful()) {
                                    Log.d("REGISTER", "createUserWithEmail:success");
                                    mAuth.getCurrentUser().sendEmailVerification();
+                                   addToFirestore(email, username);
                                    registerDone();
                                } else {
                                    Log.w("REGISTER", "createUserWithEmail:failure", task.getException());
@@ -84,10 +95,36 @@ public class RegisterActivity extends AppCompatActivity {
                    });
     }
 
+    public void addToFirestore(String email, String username) {
+        Map<String, Object> user = new HashMap<>();
+        user.put("nombre",username);
+        user.put("email",email);
+        db.collection("docentes").document(mAuth.getCurrentUser().getUid()).set(user)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        Log.i("INSERT-DB","AGREGADO CON EXITO");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        Log.i("ERROR-DB","ERROR AL AÑADIR");
+                    }
+                });
+
+    }
+
+
     public void registerDone(){
         String registerDone = "El registro se ha realizado con éxito. En breves, recibirá un correo para verificar su cuenta";
         Intent intent = new Intent(this, DoneActivity.class);
         intent.putExtra(EXTRA_REGISTERDONE,registerDone);
+        startActivity(intent);
+        finish();
+    }
+
+    public void backToLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
