@@ -7,8 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mariosg92.yourclassapp.R;
+
+import static com.mariosg92.yourclassapp.ui.clases.ClasesFragment.EXTRA_CLASE_CURSO;
+import static com.mariosg92.yourclassapp.ui.clases.ClasesFragment.EXTRA_CLASE_NOMBRE;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,14 +22,8 @@ import com.mariosg92.yourclassapp.R;
  */
 public class AlumnosFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView txtClase;
 
     public AlumnosFragment() {
         // Required empty public constructor
@@ -42,8 +41,6 @@ public class AlumnosFragment extends Fragment {
     public static AlumnosFragment newInstance(String param1, String param2) {
         AlumnosFragment fragment = new AlumnosFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,16 +48,21 @@ public class AlumnosFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alumnos, container, false);
+        View layout = inflater.inflate(R.layout.fragment_alumnos, container, false);
+        Bundle bundle = getArguments();
+        txtClase = layout.findViewById(R.id.txtClaseA);
+        if(bundle != null) {
+            String nombre = bundle.getString("EXTRA_CLASE_NOMBRE");
+            String curso = bundle.getString("EXTRA_CLASE_CURSO");
+            txtClase.setText(curso + " " + nombre);
+        }else{
+        }
+        return layout;
     }
 }

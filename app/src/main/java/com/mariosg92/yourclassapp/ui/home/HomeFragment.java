@@ -42,19 +42,22 @@ public class HomeFragment extends Fragment {
 
         cardClases = layout.findViewById(R.id.cardClases);
         cardAlumnos = layout.findViewById(R.id.cardAlumnos);
-
-        cardClases.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_misclases);
-            }
-        });
-        cardAlumnos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_alumnos);
-            }
-        });
+        try {
+            cardClases.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).navigate(R.id.nav_misclases);
+                }
+            });
+            cardAlumnos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).navigate(R.id.nav_alumnos);
+                }
+            });
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return layout;
     }
 

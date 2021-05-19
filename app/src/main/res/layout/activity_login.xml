@@ -84,22 +84,9 @@
         android:textColor="#FB0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bt_signup"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/loginSignin"
-        app:layout_constraintTop_toBottomOf="@+id/bt_Google"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintTop_toBottomOf="@+id/loginSignin"
+        app:layout_constraintVertical_bias="0.036" />
 
-    <Button
-        android:id="@+id/bt_Google"
-        android:layout_width="210dp"
-        android:layout_height="36dp"
-        android:backgroundTint="@color/teal_200"
-        android:drawableStart="@mipmap/google"
-        android:gravity="center"
-        android:text="@string/google"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/bt_signup"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="@+id/loginSignin"
-        app:layout_constraintTop_toBottomOf="@+id/loginSignin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,14 +42,14 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         errorText = findViewById(R.id.txt_error);
         edt_username = findViewById(R.id.regUser);
         edt_email = findViewById(R.id.regEmail);
         edt_password = findViewById(R.id.regPass);
         edt_passwordConfirm = findViewById(R.id.regPassConfirm);
-        db = FirebaseFirestore.getInstance();
+
 
     }
 

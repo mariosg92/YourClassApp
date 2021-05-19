@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private MenuItem logOut;
-    private MenuItem frag_clases;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
