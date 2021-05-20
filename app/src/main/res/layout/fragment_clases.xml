@@ -11,36 +11,24 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_misclases"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardAddClass"
+        android:layout_height="570dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_AddClass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardAddClass"
-        android:layout_width="310dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="183dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/bt_AddClass"
+        android:layout_width="225dp"
+        android:layout_height="41dp"
+        android:text="AÑADIR CLASE"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_misclases">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:paddingTop="10dp"
-            android:text="AÑADIR CLASE"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@+id/rv_misclases" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

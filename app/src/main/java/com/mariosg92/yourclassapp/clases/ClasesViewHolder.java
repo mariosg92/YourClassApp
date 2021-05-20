@@ -19,7 +19,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.mariosg92.yourclassapp.ClaseActivity;
 import com.mariosg92.yourclassapp.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -27,9 +26,13 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
+import static com.mariosg92.yourclassapp.ui.clases.ClasesFragment.EXTRA_CLASE_CURSO;
+
 public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private static final String EXTRA_CLASE = "com.mariosg92.ViewHolder.clases";
+
+    public static final String EXTRA_CLASEVH_NOMBRE = "com.mariosg92.ClasesVH.nombre";
+    public static final String EXTRA_CLASEVH_CURSO = "com.mariosg92.ClasesVH.curso";
     public TextView txt_rv_misclases;
     public ImageView bt_borrar;
     final ClasesAdapter clasesAdapter;
@@ -83,8 +86,8 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
             case R.id.txt_clase:
                 clasesAdapter.notifyDataSetChanged();
                 Bundle bundle = new Bundle();
-                bundle.putString("EXTRA_CLASE_NOMBRE",clase.getNombre());
-                bundle.putString("EXTRA_CLASE_CURSO",clase.getCurso());
+                bundle.putString(EXTRA_CLASEVH_NOMBRE,clase.getNombre());
+                bundle.putString(EXTRA_CLASEVH_CURSO,clase.getCurso());
                 Navigation.findNavController(v).navigate(R.id.nav_alumnos,bundle);
                 break;
         }

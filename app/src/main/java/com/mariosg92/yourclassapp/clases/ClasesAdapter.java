@@ -45,29 +45,7 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesViewHolder>{
         currentUser = mAuth.getCurrentUser();
     }
 
-    public FirebaseAuth getmAuth() {
-        return mAuth;
-    }
 
-    public void setmAuth(FirebaseAuth mAuth) {
-        this.mAuth = mAuth;
-    }
-
-    public FirebaseFirestore getDb() {
-        return db;
-    }
-
-    public void setDb(FirebaseFirestore db) {
-        this.db = db;
-    }
-
-    public FirebaseUser getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(FirebaseUser currentUser) {
-        this.currentUser = currentUser;
-    }
 
     @NonNull
     @NotNull
@@ -115,6 +93,30 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesViewHolder>{
             }
         }
         notifyDataSetChanged();
+    }
+
+    public FirebaseAuth getmAuth() {
+        return mAuth;
+    }
+
+    public void setmAuth(FirebaseAuth mAuth) {
+        this.mAuth = mAuth;
+    }
+
+    public FirebaseFirestore getDb() {
+        return db;
+    }
+
+    public void setDb(FirebaseFirestore db) {
+        this.db = db;
+    }
+
+    public FirebaseUser getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(FirebaseUser currentUser) {
+        this.currentUser = currentUser;
     }
 
     public void Add(Clases c){

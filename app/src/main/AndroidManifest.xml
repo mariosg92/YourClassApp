@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YourClassApp">
-        <activity android:name=".AddClaseActivity"></activity>
+        <activity android:name=".AlumnoDetalleActivity"></activity>
+        <activity android:name=".AddAlumnoActivity" />
+        <activity android:name=".AddClaseActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.YourClassApp.NoActionBar"></activity>
+            android:theme="@style/Theme.YourClassApp.NoActionBar" />
         <activity android:name=".MainActivity" />
         <activity android:name=".DoneActivity" />
         <activity android:name=".RecoveryActivity" />

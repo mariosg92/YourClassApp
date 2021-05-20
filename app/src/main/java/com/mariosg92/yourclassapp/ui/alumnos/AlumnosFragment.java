@@ -2,15 +2,33 @@ package com.mariosg92.yourclassapp.ui.alumnos;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.mariosg92.yourclassapp.R;
+import com.mariosg92.yourclassapp.clases.Alumno;
+import com.mariosg92.yourclassapp.clases.AlumnoAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
+import static com.mariosg92.yourclassapp.clases.ClasesViewHolder.EXTRA_CLASEVH_CURSO;
+import static com.mariosg92.yourclassapp.clases.ClasesViewHolder.EXTRA_CLASEVH_NOMBRE;
 import static com.mariosg92.yourclassapp.ui.clases.ClasesFragment.EXTRA_CLASE_CURSO;
 import static com.mariosg92.yourclassapp.ui.clases.ClasesFragment.EXTRA_CLASE_NOMBRE;
 
@@ -23,7 +41,12 @@ import static com.mariosg92.yourclassapp.ui.clases.ClasesFragment.EXTRA_CLASE_NO
 public class AlumnosFragment extends Fragment {
 
 
-    private TextView txtClase;
+    private RecyclerView mRecyclerView;
+    private AlumnoAdapter mAdapter;
+    private ArrayList<Alumno> alumnosList;
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
 
     public AlumnosFragment() {
         // Required empty public constructor
@@ -55,14 +78,36 @@ public class AlumnosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_alumnos, container, false);
-        Bundle bundle = getArguments();
-        txtClase = layout.findViewById(R.id.txtClaseA);
-        if(bundle != null) {
-            String nombre = bundle.getString("EXTRA_CLASE_NOMBRE");
-            String curso = bundle.getString("EXTRA_CLASE_CURSO");
-            txtClase.setText(curso + " " + nombre);
-        }else{
-        }
+
+        alumnosList = new ArrayList<>();
+        mRecyclerView = layout.findViewById(R.id.rv_alumnos);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
+        getAlumnos();
+        mAdapter = new AlumnoAdapter(getContext(), alumnosList);
+        mRecyclerView.setAdapter(mAdapter);
         return layout;
+    }
+
+    private void getAlumnos() {
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
+        db.collectionGroup("alumnos").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            alumnosList.clear();
+                            for(QueryDocumentSnapshot document: task.getResult()){
+                                String nombre = document.getString("nombre");
+                                String apellido1 = document.getString("apellido1");
+                                String apellido2 = document.getString("apellido2");
+                                int puntos = (int) document.get("puntos");
+                                Alumno a1 = new Alumno(nombre,apellido1,apellido2,puntos);
+                                mAdapter.Add(a1);
+                            }
+                        }
+                    }
+                });
     }
 }
