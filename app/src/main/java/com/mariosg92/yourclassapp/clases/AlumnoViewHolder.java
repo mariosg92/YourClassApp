@@ -55,7 +55,7 @@ public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.On
                 bundle.putString(EXTRA_ALUMNOVH_NOMBRE,alumno.getNombre());
                 bundle.putString(EXTRA_ALUMNOVH_APELLIDO1,alumno.getApellido1());
                 bundle.putString(EXTRA_ALUMNOVH_APELLIDO2,alumno.getApellido2());
-                bundle.putInt(EXTRA_ALUMNOVH_PUNTOS,alumno.getPuntos());
+                bundle.putLong(EXTRA_ALUMNOVH_PUNTOS,alumno.getPuntos());
                 Intent intent = new Intent(v.getContext(), AlumnoDetalleActivity.class);
                 intent.putExtras(bundle);
                 v.getContext().startActivity(intent);

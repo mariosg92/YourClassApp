@@ -8,11 +8,19 @@ public class Alumno implements Serializable {
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private int puntos;
+    private long puntos;
     private String codigo;
 
 
-    public Alumno(String nombre, String apellido1, String apellido2, int puntos) {
+    public Alumno(String nombre, String apellido1, String apellido2, String codigo) {
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.puntos = 0;
+        this.codigo = codigo;
+    }
+
+    public Alumno(String nombre, String apellido1, String apellido2, long puntos) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
@@ -46,11 +54,11 @@ public class Alumno implements Serializable {
         this.apellido2 = apellido2;
     }
 
-    public int getPuntos() {
+    public long getPuntos() {
         return puntos;
     }
 
-    public void setPuntos(int puntos) {
+    public void setPuntos(long puntos) {
         this.puntos = puntos;
     }
 

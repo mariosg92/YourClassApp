@@ -6,4 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".AddAlumnoActivity">
 
+    <EditText
+        android:id="@+id/edt_NombreAlumno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="184dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_PrimerApellidoAlumno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Primer Apellido"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_NombreAlumno" />
+
+    <EditText
+        android:id="@+id/edt_SegundoApellidoAlumno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Segundo Apellido"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_PrimerApellidoAlumno" />
+
+    <Button
+        android:id="@+id/bt_AddAlumno2"
+        android:layout_width="208dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:text="AÑADIR ALUMNO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_SegundoApellidoAlumno" />
+
+    <Button
+        android:id="@+id/bt_volver"
+        android:layout_width="99dp"
+        android:layout_height="38dp"
+        android:text="VOLVER"
+        app:layout_constraintEnd_toEndOf="@+id/bt_AddAlumno2"
+        app:layout_constraintStart_toStartOf="@+id/bt_AddAlumno2"
+        app:layout_constraintTop_toBottomOf="@+id/bt_AddAlumno2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

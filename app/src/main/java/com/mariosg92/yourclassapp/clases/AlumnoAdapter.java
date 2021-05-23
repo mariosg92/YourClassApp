@@ -1,6 +1,7 @@
 package com.mariosg92.yourclassapp.clases;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,13 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoViewHolder> {
 
     public void setListaAlumnos(List<Alumno> listaAlumnos) {
         this.listaAlumnos = listaAlumnos;
+        if(this.listaAlumnos == null){
+            Log.i("alumnos","List is null");
+        }else{
+            for(Alumno a: listaAlumnos){
+                Log.i("alumnos","alumno: "+a.getNombre());
+            }
+        }
         notifyDataSetChanged();
     }
 
@@ -97,8 +105,8 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoViewHolder> {
         if(listaAlumnos != null){
             Alumno alumnoActual = listaAlumnos.get(position);
             holder.txt_nombreA.setText(alumnoActual.getNombre());
-            holder.txt_apellidosA.setText(alumnoActual.getApellido1()+" "+alumnoActual.getApellido2());
-            holder.txt_points.setText(alumnoActual.getPuntos());
+            holder.txt_apellidosA.setText(alumnoActual.getApellido1()+"\n"+alumnoActual.getApellido2());
+            holder.txt_points.setText(String.valueOf(alumnoActual.getPuntos()));
             holder.setOnClickerListeners();
         }
 

@@ -11,9 +11,6 @@
             android:title="@string/mis_clases"
             android:id="@+id/nav_misclases"/>
         <item
-            android:title="Alumnos"
-            android:id="@+id/nav_alumnos"/>
-        <item
             android:title="">
             <menu>
                 <item
