@@ -98,7 +98,7 @@ public class AlumnosFragment extends Fragment {
         alumnosList = new ArrayList<>();
         mRecyclerView = layout.findViewById(R.id.rv_alumnos);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        getAlumnos();
+        getAlumnos(c);
         mAdapter = new AlumnoAdapter(getContext(), alumnosList);
         mRecyclerView.setAdapter(mAdapter);
         bt_AddAlumno = layout.findViewById(R.id.bt_AddAlumno);
@@ -134,7 +134,7 @@ public class AlumnosFragment extends Fragment {
         }
     }
 
-    private void getAlumnos() {
+    private void getAlumnos(Clases c) {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();

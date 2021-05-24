@@ -96,6 +96,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             alumnosList.add(a);
+                            db.collection("alumnos").document(a.getCodigo()).set(a);
                             Intent intent = new Intent();
                             intent.putExtra(EXTRA_ADDALUMNO_LIST, alumnosList);
                             setResult(RESULT_OK, intent);

@@ -130,7 +130,8 @@ public class ClasesFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String nombre = document.getString("nombre");
                                 String curso = document.getString("curso");
-                                Clases c1 = new Clases(nombre, curso);
+                                String claseId = document.getString("claseId");
+                                Clases c1 = new Clases(nombre, curso, claseId);
                                 mAdapter.Add(c1);
                             }
                         }

@@ -12,10 +12,24 @@ public class Clases implements Serializable {
     public Clases(String nombre, String curso) {
         this.nombre = nombre;
         this.curso = curso;
-        this.claseId = nombre.concat(curso.substring(0,3).concat(String.valueOf((int)Math.floor(Math.random()*(1000-1))+1)));
+        if(claseId == null){
+            this.claseId = generateClaseId();
+            System.out.println("SE GENERA CLASE ID "+this.claseId);
+        }
+
     }
 
     public Clases() {
+    }
+
+    public Clases(String nombre, String curso, String claseId) {
+        this.nombre = nombre;
+        this.curso = curso;
+        this.claseId = claseId;
+    }
+
+    public String generateClaseId(){
+        return nombre.concat(curso.substring(0,3).concat(String.valueOf((int)Math.floor(Math.random()*(1000-1))+1)));
     }
 
     public String getNombre() {

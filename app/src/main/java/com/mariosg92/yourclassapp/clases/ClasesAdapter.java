@@ -59,6 +59,7 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesViewHolder>{
     public void onBindViewHolder(@NonNull @NotNull ClasesViewHolder holder, int position) {
         if(listaClases != null){
             Clases claseActual = listaClases.get(position);
+            System.out.println(claseActual.getClaseId());
             holder.txt_rv_misclases.setText(claseActual.getCurso()+" "+claseActual.getNombre());
             holder.setOnClickListeners();
         }

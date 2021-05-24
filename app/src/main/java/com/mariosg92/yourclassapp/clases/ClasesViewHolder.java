@@ -66,7 +66,7 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
                             alerta.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    dRef.collection("clases").document(document.getId()).delete();
+                                    dRef.collection("clases").document(clase.getClaseId()).delete();
                                     clases.remove(mPosition);
                                     clasesAdapter.notifyItemRemoved(mPosition);
                                     Log.i("BORRADO", "BORRADO CORRECTAMENTE");
