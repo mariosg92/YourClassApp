@@ -6,4 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".AlumnoDetalleActivity">
 
+    <ImageView
+        android:id="@+id/img_alumnoDetalle"
+        android:layout_width="179dp"
+        android:layout_height="162dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txt_nombreDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="@+id/img_alumnoDetalle"
+        app:layout_constraintStart_toStartOf="@+id/img_alumnoDetalle"
+        app:layout_constraintTop_toBottomOf="@+id/img_alumnoDetalle" />
+
+    <TextView
+        android:id="@+id/txt_apellidosDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/txt_nombreDetalle"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/txt_nombreDetalle"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreDetalle" />
+
+    <TextView
+        android:id="@+id/txt_puntosDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/txt_apellidosDetalle"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/txt_apellidosDetalle"
+        app:layout_constraintTop_toBottomOf="@+id/txt_apellidosDetalle" />
+
+    <Button
+        android:id="@+id/bt_volverDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="VOLVER"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/bt_borrarAlumno"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_alumnoDetalle"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

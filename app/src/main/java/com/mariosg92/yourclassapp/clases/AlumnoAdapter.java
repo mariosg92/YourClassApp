@@ -103,6 +103,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull @NotNull AlumnoViewHolder holder, int position) {
         if(listaAlumnos != null){
+
             Alumno alumnoActual = listaAlumnos.get(position);
             holder.txt_nombreA.setText(alumnoActual.getNombre());
             holder.txt_apellidosA.setText(alumnoActual.getApellido1()+"\n"+alumnoActual.getApellido2());

@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mariosg92.yourclassapp.R;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Document;
 
 import java.io.Serializable;
 import java.util.List;
@@ -33,6 +35,7 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
 
     public static final String EXTRA_CLASEVH_NOMBRE = "com.mariosg92.ClasesVH.nombre";
     public static final String EXTRA_CLASEVH_CURSO = "com.mariosg92.ClasesVH.curso";
+    public static final String EXTRA_CLASEVH_CLASE = "com.mariosg92.ClasesVH.clase";
     public TextView txt_rv_misclases;
     public ImageView bt_borrar;
     final ClasesAdapter clasesAdapter;
@@ -53,30 +56,28 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
         switch (v.getId()) {
             case R.id.bt_borrar:
                 DocumentReference dRef = clasesAdapter.getDb().collection("docentes").document(clasesAdapter.getCurrentUser().getUid());
-                Query query = dRef.collection("clases").whereEqualTo("nombre", clase.getNombre()).whereEqualTo("curso", clase.getCurso());
-                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                dRef.collection("clases").document(clase.getClaseId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                AlertDialog.Builder alerta = new AlertDialog.Builder(clasesAdapter.getC());
-                                alerta.setTitle("¿Desea borrar esta clase?");
-                                alerta.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dRef.collection("clases").document(document.getId()).delete();
-                                        clases.remove(mPosition);
-                                        clasesAdapter.notifyItemRemoved(mPosition);
-                                        Log.i("BORRADO", "BORRADO CORRECTAMENTE");
-                                    }
-                                });
-                                alerta.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                });
-                                alerta.show();
-                            }
+                            DocumentSnapshot document = task.getResult();
+                            AlertDialog.Builder alerta = new AlertDialog.Builder(clasesAdapter.getC());
+                            alerta.setTitle("¿Desea borrar esta clase?");
+                            alerta.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dRef.collection("clases").document(document.getId()).delete();
+                                    clases.remove(mPosition);
+                                    clasesAdapter.notifyItemRemoved(mPosition);
+                                    Log.i("BORRADO", "BORRADO CORRECTAMENTE");
+                                }
+                            });
+                            alerta.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+                            alerta.show();
 
                         }
                     }
@@ -86,9 +87,8 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
             case R.id.txt_clase:
                 clasesAdapter.notifyDataSetChanged();
                 Bundle bundle = new Bundle();
-                bundle.putString(EXTRA_CLASEVH_NOMBRE,clase.getNombre());
-                bundle.putString(EXTRA_CLASEVH_CURSO,clase.getCurso());
-                Navigation.findNavController(v).navigate(R.id.nav_alumnos,bundle);
+                bundle.putSerializable(EXTRA_CLASEVH_CLASE, clase);
+                Navigation.findNavController(v).navigate(R.id.nav_alumnos, bundle);
                 break;
         }
     }

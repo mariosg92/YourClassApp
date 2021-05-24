@@ -7,10 +7,12 @@ public class Clases implements Serializable {
 
     private String nombre;
     private String curso;
+    private String claseId;
 
     public Clases(String nombre, String curso) {
         this.nombre = nombre;
         this.curso = curso;
+        this.claseId = nombre.concat(curso.substring(0,3).concat(String.valueOf((int)Math.floor(Math.random()*(1000-1))+1)));
     }
 
     public Clases() {
@@ -32,7 +34,13 @@ public class Clases implements Serializable {
         this.curso = curso;
     }
 
+    public String getClaseId() {
+        return claseId;
+    }
 
+    public void setClaseId(String claseId) {
+        this.claseId = claseId;
+    }
 
     @Override
     public boolean equals(Object o) {

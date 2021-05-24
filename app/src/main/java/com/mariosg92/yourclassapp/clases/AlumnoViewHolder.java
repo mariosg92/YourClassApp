@@ -9,6 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.mariosg92.yourclassapp.AlumnoDetalleActivity;
 import com.mariosg92.yourclassapp.R;
 
@@ -30,7 +34,11 @@ public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.On
     public ImageView img_alumno;
     public ImageView bt_addPoints;
     public ImageView bt_removePoints;
-    final AlumnoAdapter alumnoAdapter; 
+    final AlumnoAdapter alumnoAdapter;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
+
     
     public AlumnoViewHolder(@NonNull @NotNull View itemView, AlumnoAdapter alumnoAdapter) {
         super(itemView);
@@ -41,6 +49,9 @@ public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.On
         bt_removePoints = itemView.findViewById(R.id.bt_removePoints);
         img_alumno = itemView.findViewById(R.id.img_Alumno);
         this.alumnoAdapter = alumnoAdapter;
+        db = alumnoAdapter.getDb();
+        mAuth = alumnoAdapter.getmAuth();
+        currentUser = alumnoAdapter.getCurrentUser();
     }
 
     @Override

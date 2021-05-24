@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mariosg92.yourclassapp.clases.Alumno;
+import com.mariosg92.yourclassapp.clases.Clases;
 import com.mariosg92.yourclassapp.ui.alumnos.AlumnosFragment;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,9 +41,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
     private EditText edt_primerApellido;
     private EditText edt_segundoApellido;
     private ArrayList<Alumno> alumnosList;
-    private String claseAlumno;
-    private String cursoAlumno;
-    private String claseId;
+    private Clases claseAlumno;
     private String nombreAlumno;
     private String apellido1Alumno;
     private String apellido2Alumno;
@@ -63,9 +62,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         alumnosList = new ArrayList<>();
         alumnosList = (ArrayList<Alumno>) intent.getSerializableExtra(EXTRA_ALUMNOS_ARRAY);
-        claseAlumno = intent.getStringExtra(EXTRA_CLASE_ALUMNOS);
-        cursoAlumno = intent.getStringExtra(EXTRA_CURSO_ALUMNOS);
-
+        claseAlumno = (Clases) intent.getSerializableExtra(EXTRA_CLASE_ALUMNOS);
 
 
         bt_AddAlumno.setOnClickListener(new View.OnClickListener() {
@@ -74,9 +71,9 @@ public class AddAlumnoActivity extends AppCompatActivity {
                 nombreAlumno = edt_nombreAlumno.getText().toString();
                 apellido1Alumno = edt_primerApellido.getText().toString();
                 apellido2Alumno = edt_segundoApellido.getText().toString();
-                String iniciales = nombreAlumno.substring(0,1).concat(apellido1Alumno.substring(0,1)).concat(apellido2Alumno.substring(0,1));
-                String alumnoId = iniciales.concat(currentUser.getUid().substring(0,3)).concat(String.valueOf((int)Math.floor(Math.random()*(100-1))+1)).toUpperCase();
-                Alumno a = new Alumno(nombreAlumno,apellido1Alumno,apellido2Alumno,alumnoId);
+                String iniciales = nombreAlumno.substring(0, 1).concat(apellido1Alumno.substring(0, 1)).concat(apellido2Alumno.substring(0, 1));
+                String alumnoId = iniciales.concat(currentUser.getUid().substring(0, 3)).concat(String.valueOf((int) Math.floor(Math.random() * (100 - 1)) + 1)).toUpperCase();
+                Alumno a = new Alumno(nombreAlumno, apellido1Alumno, apellido2Alumno, alumnoId);
                 addAlumno(a);
             }
         });
@@ -90,20 +87,17 @@ public class AddAlumnoActivity extends AppCompatActivity {
     }
 
 
-    public void addAlumno(Alumno a){
-        Task<QuerySnapshot> querySnapshotTask = db.collection("docentes").document(currentUser.getUid())
-                .collection("clases").whereEqualTo("nombre",claseAlumno)
-                .whereEqualTo("curso",cursoAlumno).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public void addAlumno(Alumno a) {
+        db.collection("docentes").document(currentUser.getUid())
+                .collection("clases").document(claseAlumno.getClaseId())
+                .collection("alumnos").document(a.getCodigo()).set(a)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            claseId = task.getResult().getDocuments().iterator().next().getId();
-                            db.collection("docentes").document(currentUser.getUid()).collection("clases")
-                                    .document(claseId).collection("alumnos").document(a.getCodigo()).set(a);
-                            db.collection("alumnos").document(a.getCodigo()).set(a);
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        if (task.isSuccessful()) {
                             alumnosList.add(a);
                             Intent intent = new Intent();
-                            intent.putExtra(EXTRA_ADDALUMNO_LIST,alumnosList);
+                            intent.putExtra(EXTRA_ADDALUMNO_LIST, alumnosList);
                             setResult(RESULT_OK, intent);
                         }
                     }

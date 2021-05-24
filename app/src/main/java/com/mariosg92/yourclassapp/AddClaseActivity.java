@@ -73,9 +73,9 @@ public class AddClaseActivity extends AppCompatActivity {
 
 
     public void addToFirestore(Clases c){
-        String claseId = nombre_clase.concat(curso.substring(0,3).concat(String.valueOf((int)Math.floor(Math.random()*(1000-1))+1)));
+        //String claseId = nombre_clase.concat(curso.substring(0,3).concat(String.valueOf((int)Math.floor(Math.random()*(1000-1))+1)));
         db.collection("docentes").document(currentUser.getUid())
-                .collection("clases").document(claseId).set(c);
+                .collection("clases").document(c.getClaseId()).set(c);
         clasesList.add(c);
         Intent intent = new Intent();
         intent.putExtra(EXTRA_ADDCLASE_LIST,clasesList);
