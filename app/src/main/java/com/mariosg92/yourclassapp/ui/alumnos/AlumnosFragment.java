@@ -97,7 +97,7 @@ public class AlumnosFragment extends Fragment {
 
         alumnosList = new ArrayList<>();
         mRecyclerView = layout.findViewById(R.id.rv_alumnos);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         getAlumnos(c);
         mAdapter = new AlumnoAdapter(getContext(), alumnosList);
         mRecyclerView.setAdapter(mAdapter);
@@ -106,8 +106,10 @@ public class AlumnosFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                ArrayList<Alumno> listaAlumnos = (ArrayList<Alumno>) mAdapter.getListaAlumnos();
+                System.out.println(listaAlumnos.toString());
                 Intent intent = new Intent(getContext(), AddAlumnoActivity.class);
-                intent.putExtra(EXTRA_ALUMNOS_ARRAY, alumnosList);
+                intent.putExtra(EXTRA_ALUMNOS_ARRAY, listaAlumnos);
                 intent.putExtra(EXTRA_CLASE_ALUMNOS, c);
                 startActivityForResult(intent, ACTIVITY_REQUEST_CODE_2);
             }
@@ -115,11 +117,6 @@ public class AlumnosFragment extends Fragment {
         return layout;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
@@ -132,6 +129,12 @@ public class AlumnosFragment extends Fragment {
                 mAdapter.notifyItemRangeInserted(0, alumnosList.size());
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     private void getAlumnos(Clases c) {
@@ -150,7 +153,9 @@ public class AlumnosFragment extends Fragment {
                                 String apellido1 = document.getString("apellido1");
                                 String apellido2 = document.getString("apellido2");
                                 long puntos = (long) document.get("puntos");
-                                Alumno a1 = new Alumno(nombre, apellido1, apellido2, puntos);
+                                String codigo = document.getString("codigo");
+                                Clases clase = c;
+                                Alumno a1 = new Alumno(nombre, apellido1, apellido2, codigo, puntos, c);
                                 mAdapter.Add(a1);
                             }
                         }

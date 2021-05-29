@@ -10,24 +10,36 @@ public class Alumno implements Serializable {
     private String apellido2;
     private long puntos;
     private String codigo;
+    private Clases clase;
 
 
-    public Alumno(String nombre, String apellido1, String apellido2, String codigo) {
+    public Alumno(String nombre, String apellido1, String apellido2, String codigo, Clases clase) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.puntos = 0;
         this.codigo = codigo;
+        this.clase = clase;
     }
 
-    public Alumno(String nombre, String apellido1, String apellido2, long puntos) {
+    public Alumno(String nombre, String apellido1, String apellido2, String codigo, long puntos, Clases clase) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
+        this.codigo = codigo;
         this.puntos = puntos;
+        this.clase = clase;
     }
     public Alumno(){
 
+    }
+
+    public Clases getClase() {
+        return clase;
+    }
+
+    public void setClase(Clases clase) {
+        this.clase = clase;
     }
 
     public String getNombre() {

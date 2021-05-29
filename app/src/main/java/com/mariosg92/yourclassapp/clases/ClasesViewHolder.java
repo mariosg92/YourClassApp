@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -38,6 +40,7 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
     public static final String EXTRA_CLASEVH_CLASE = "com.mariosg92.ClasesVH.clase";
     public TextView txt_rv_misclases;
     public ImageView bt_borrar;
+    public Clases clase;
     final ClasesAdapter clasesAdapter;
 
     public ClasesViewHolder(@NonNull @NotNull View itemView, ClasesAdapter clasesAdapter) {
@@ -52,7 +55,7 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
     public void onClick(View v) {
         int mPosition = getAdapterPosition();
         List<Clases> clases = this.clasesAdapter.getListaClases();
-        Clases clase = clases.get(mPosition);
+        clase = clases.get(mPosition);
         switch (v.getId()) {
             case R.id.bt_borrar:
                 DocumentReference dRef = clasesAdapter.getDb().collection("docentes").document(clasesAdapter.getCurrentUser().getUid());
@@ -80,6 +83,11 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
                             alerta.show();
 
                         }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        Toast.makeText(v.getContext(),"Hubo un problema en la base de datos",Toast.LENGTH_SHORT).show();
                     }
                 });
                 clasesAdapter.notifyDataSetChanged();

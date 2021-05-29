@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +25,7 @@ import com.mariosg92.yourclassapp.clases.Clases;
 import com.mariosg92.yourclassapp.ui.alumnos.AlumnosFragment;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -45,6 +49,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
     private String nombreAlumno;
     private String apellido1Alumno;
     private String apellido2Alumno;
+    private TextView edt_errorText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
         edt_nombreAlumno = findViewById(R.id.edt_NombreAlumno);
         edt_primerApellido = findViewById(R.id.edt_PrimerApellidoAlumno);
         edt_segundoApellido = findViewById(R.id.edt_SegundoApellidoAlumno);
+        edt_errorText = findViewById(R.id.textErrorA);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -68,13 +74,16 @@ public class AddAlumnoActivity extends AppCompatActivity {
         bt_AddAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nombreAlumno = edt_nombreAlumno.getText().toString();
-                apellido1Alumno = edt_primerApellido.getText().toString();
-                apellido2Alumno = edt_segundoApellido.getText().toString();
-                String iniciales = nombreAlumno.substring(0, 1).concat(apellido1Alumno.substring(0, 1)).concat(apellido2Alumno.substring(0, 1));
-                String alumnoId = iniciales.concat(currentUser.getUid().substring(0, 3)).concat(String.valueOf((int) Math.floor(Math.random() * (100 - 1)) + 1)).toUpperCase();
-                Alumno a = new Alumno(nombreAlumno, apellido1Alumno, apellido2Alumno, alumnoId);
-                addAlumno(a);
+                if(validation()) {
+                    edt_errorText.setText("");
+                    nombreAlumno = edt_nombreAlumno.getText().toString();
+                    apellido1Alumno = edt_primerApellido.getText().toString();
+                    apellido2Alumno = edt_segundoApellido.getText().toString();
+                    String iniciales = nombreAlumno.substring(0, 1).concat(apellido1Alumno.substring(0, 1)).concat(apellido2Alumno.substring(0, 1));
+                    String alumnoId = iniciales.concat(currentUser.getUid().substring(0, 3)).concat(String.valueOf((int) Math.floor(Math.random() * (100 - 1)) + 1)).toUpperCase();
+                    Alumno a = new Alumno(nombreAlumno, apellido1Alumno, apellido2Alumno, alumnoId, claseAlumno);
+                    addAlumno(a);
+                }
             }
         });
 
@@ -86,6 +95,15 @@ public class AddAlumnoActivity extends AppCompatActivity {
         });
     }
 
+
+    public boolean validation(){
+        if((edt_nombreAlumno.length() == 0)||(edt_primerApellido.length() == 0) || (edt_segundoApellido.length() == 0)){
+            edt_errorText.setText("Complete todos los campos");
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     public void addAlumno(Alumno a) {
         db.collection("docentes").document(currentUser.getUid())
@@ -100,9 +118,18 @@ public class AddAlumnoActivity extends AppCompatActivity {
                             Intent intent = new Intent();
                             intent.putExtra(EXTRA_ADDALUMNO_LIST, alumnosList);
                             setResult(RESULT_OK, intent);
+                            Toast.makeText(AddAlumnoActivity.this,"ALUMNO AÑADIDO",Toast.LENGTH_LONG).show();
+                            edt_nombreAlumno.setText("");
+                            edt_primerApellido.setText("");
+                            edt_segundoApellido.setText("");
+
                         }
                     }
-                });
-
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                Toast.makeText(AddAlumnoActivity.this,"Hubo un problema en la base de datos",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

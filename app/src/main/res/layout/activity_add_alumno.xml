@@ -43,7 +43,7 @@
 
     <Button
         android:id="@+id/bt_AddAlumno2"
-        android:layout_width="208dp"
+        android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginTop="8dp"
         android:text="AÑADIR ALUMNO"
@@ -54,10 +54,23 @@
 
     <Button
         android:id="@+id/bt_volver"
-        android:layout_width="99dp"
+        android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:text="VOLVER"
         app:layout_constraintEnd_toEndOf="@+id/bt_AddAlumno2"
         app:layout_constraintStart_toStartOf="@+id/bt_AddAlumno2"
         app:layout_constraintTop_toBottomOf="@+id/bt_AddAlumno2" />
+
+    <TextView
+        android:id="@+id/textErrorA"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_volver"
+        app:layout_constraintVertical_bias="0.043" />
 </androidx.constraintlayout.widget.ConstraintLayout>

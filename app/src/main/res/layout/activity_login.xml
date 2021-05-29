@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/bt_signup"
-        android:layout_width="105dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginStart="14dp"
         android:onClick="signUp"
@@ -17,7 +17,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/loginSignin"
         app:layout_constraintEnd_toEndOf="@+id/loginPassword"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/loginSignin"
         app:layout_constraintTop_toTopOf="@+id/loginSignin"
         app:layout_constraintVertical_bias="0.0" />
@@ -51,16 +51,16 @@
 
     <Button
         android:id="@+id/loginSignin"
-        android:layout_width="105dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginTop="28dp"
         android:onClick="login"
         android:text="@string/conectar"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/loginPassword"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/loginPassword"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
+        app:layout_constraintVertical_bias="0.005" />
 
     <TextView
         android:id="@+id/txt_recover"
@@ -78,10 +78,10 @@
 
     <TextView
         android:id="@+id/txt_loginError"
-        android:layout_width="209dp"
+        android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:textAlignment="center"
-        android:textColor="#FB0000"
+        android:textColor="@color/error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bt_signup"
         app:layout_constraintHorizontal_bias="0.0"

@@ -11,6 +11,7 @@
         android:layout_width="224dp"
         android:layout_height="47dp"
         android:layout_marginBottom="400dp"
+        android:onClick="logAsAlumno"
         android:text="ALUMNO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btDocente"

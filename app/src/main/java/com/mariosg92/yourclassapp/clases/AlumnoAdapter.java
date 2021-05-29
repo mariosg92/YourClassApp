@@ -54,7 +54,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoViewHolder> {
             Log.i("alumnos","List is null");
         }else{
             for(Alumno a: listaAlumnos){
-                Log.i("alumnos","alumno: "+a.getNombre());
+                Log.i("alumnos","alumno: "+a.getNombre()+"\n"+a.getCodigo()+"\n"+a.getClase().getClaseId());
             }
         }
         notifyDataSetChanged();
@@ -103,10 +103,10 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull @NotNull AlumnoViewHolder holder, int position) {
         if(listaAlumnos != null){
-
             Alumno alumnoActual = listaAlumnos.get(position);
             holder.txt_nombreA.setText(alumnoActual.getNombre());
-            holder.txt_apellidosA.setText(alumnoActual.getApellido1()+"\n"+alumnoActual.getApellido2());
+            holder.txt_apellidosA.setText(alumnoActual.getApellido1());
+            holder.txt_apellidosA2.setText(alumnoActual.getApellido2());
             holder.txt_points.setText(String.valueOf(alumnoActual.getPuntos()));
             holder.setOnClickerListeners();
         }

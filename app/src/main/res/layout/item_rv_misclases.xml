@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/txt_clase"
-            android:layout_width="321dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:gravity="center"
@@ -26,20 +26,18 @@
             android:textColor="@color/black"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bt_borrar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/bt_borrar"
-            android:layout_width="0dp"
+            android:layout_width="32dp"
             android:layout_height="34dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="12dp"
-            android:onClick=""
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/txt_clase"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_clase"
             app:layout_constraintTop_toTopOf="@+id/txt_clase"
             app:srcCompat="@android:drawable/ic_delete" />
 

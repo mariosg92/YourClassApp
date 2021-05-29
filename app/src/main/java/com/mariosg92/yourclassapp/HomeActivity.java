@@ -100,6 +100,7 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mAuth.signOut();
+                        finish();
                         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                     }
                 });

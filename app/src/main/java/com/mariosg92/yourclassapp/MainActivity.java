@@ -11,8 +11,6 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_ROLE = "com.mariosg92.MainActivity.role";
-    private String role = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +22,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logAsDocente(View view) {
-        role = "docente";
         Intent intent = new Intent(this, LoginActivity.class);
-        intent.putExtra(EXTRA_ROLE,role);
+        startActivity(intent);
+    }
+
+    public void logAsAlumno(View view) {
+        Intent intent = new Intent(this, LoginAlumnosActivity.class);
         startActivity(intent);
     }
 }

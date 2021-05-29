@@ -9,19 +9,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YourClassApp">
-        <activity android:name=".AlumnoDetalleActivity"></activity>
-        <activity android:name=".AddAlumnoActivity" />
-        <activity android:name=".AddClaseActivity" />
+        <activity android:name=".LoginAlumnosActivity"></activity>
+        <activity
+            android:name=".AlumnoDetalleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddAlumnoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddClaseActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.YourClassApp.NoActionBar" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".DoneActivity" />
-        <activity android:name=".RecoveryActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoadSplashActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecoveryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoadSplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
