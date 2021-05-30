@@ -29,10 +29,12 @@ import com.mariosg92.yourclassapp.R;
 import com.mariosg92.yourclassapp.clases.Alumno;
 import com.mariosg92.yourclassapp.clases.AlumnoAdapter;
 import com.mariosg92.yourclassapp.clases.Clases;
+import com.mariosg92.yourclassapp.utils.TinyDB;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.mariosg92.yourclassapp.AddAlumnoActivity.EXTRA_ADDALUMNO_LIST;
 import static com.mariosg92.yourclassapp.clases.ClasesViewHolder.EXTRA_CLASEVH_CLASE;
@@ -59,6 +61,7 @@ public class AlumnosFragment extends Fragment {
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private Clases c;
+    private TinyDB tinyDB;
 
     public AlumnosFragment() {
         // Required empty public constructor
@@ -93,7 +96,10 @@ public class AlumnosFragment extends Fragment {
 
         Bundle bundle = getArguments();
         c = (Clases) bundle.getSerializable(EXTRA_CLASEVH_CLASE);
-
+        tinyDB = new TinyDB(layout.getContext());
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 
         alumnosList = new ArrayList<>();
         mRecyclerView = layout.findViewById(R.id.rv_alumnos);
@@ -117,7 +123,6 @@ public class AlumnosFragment extends Fragment {
         return layout;
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -134,13 +139,17 @@ public class AlumnosFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mRecyclerView.setAdapter(mAdapter);
+        if(tinyDB.getBoolean("detalleActivity")){
+            tinyDB.putBoolean("detalleActivity",false);
+            int position = tinyDB.getInt("position");
+            alumnosList.remove(position);
+            mAdapter.setListaAlumnos(alumnosList);
+            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemRemoved(position);
+        }
     }
 
     private void getAlumnos(Clases c) {
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        db = FirebaseFirestore.getInstance();
         db.collection("docentes").document(currentUser.getUid()).collection("clases").document(c.getClaseId())
                 .collection("alumnos").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -162,4 +171,5 @@ public class AlumnosFragment extends Fragment {
                     }
                 });
     }
+
 }

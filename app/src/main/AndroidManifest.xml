@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YourClassApp">
-        <activity android:name=".LoginAlumnosActivity"></activity>
+        <activity
+            android:name=".AlumnoTabActivity"
+            android:label="@string/title_activity_alumno_tab"
+            android:theme="@style/Theme.YourClassApp.NoActionBar"></activity>
+        <activity android:name=".LoginAlumnosActivity" />
         <activity
             android:name=".AlumnoDetalleActivity"
             android:screenOrientation="portrait" />

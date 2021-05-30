@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mariosg92.yourclassapp.AlumnoDetalleActivity;
 import com.mariosg92.yourclassapp.R;
+import com.mariosg92.yourclassapp.ui.alumnos.AlumnosFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,12 +28,10 @@ import java.util.List;
 
 
 
-public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public static final String EXTRA_ALUMNOVH_NOMBRE = "com.mariosg92.AlumnoVH.nombre";
-    public static final String EXTRA_ALUMNOVH_APELLIDO1 = "com.mariosg92.AlumnoVH.apellido1";
-    public static final String EXTRA_ALUMNOVH_APELLIDO2 = "com.mariosg92.AlumnoVH.apellido2";
-    public static final String EXTRA_ALUMNOVH_PUNTOS = "com.mariosg92.AlumnoVH.puntos";
+    public static final String EXTRA_ALUMNOVH_ALUMNO = "com.mariosg92.AlumnoVH.alumno";
+    public static final String EXTRA_ALUMNOVH_POSITION = "com.mariosg92.AlumnoVH.position";
     public TextView txt_nombreA;
     public TextView txt_apellidosA;
     public TextView txt_apellidosA2;
@@ -75,10 +74,8 @@ public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.On
             case R.id.img_Alumno:
                 alumnoAdapter.notifyDataSetChanged();
                 Bundle bundle = new Bundle();
-                bundle.putString(EXTRA_ALUMNOVH_NOMBRE,alumno.getNombre());
-                bundle.putString(EXTRA_ALUMNOVH_APELLIDO1,alumno.getApellido1());
-                bundle.putString(EXTRA_ALUMNOVH_APELLIDO2,alumno.getApellido2());
-                bundle.putLong(EXTRA_ALUMNOVH_PUNTOS,alumno.getPuntos());
+                bundle.putSerializable(EXTRA_ALUMNOVH_ALUMNO,alumno);
+                bundle.putInt(EXTRA_ALUMNOVH_POSITION,mPosition);
                 Intent intent = new Intent(v.getContext(), AlumnoDetalleActivity.class);
                 intent.putExtras(bundle);
                 v.getContext().startActivity(intent);
