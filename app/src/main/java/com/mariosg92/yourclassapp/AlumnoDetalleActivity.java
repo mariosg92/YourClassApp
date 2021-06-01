@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,6 +29,8 @@ import com.mariosg92.yourclassapp.utils.TinyDB;
 
 import org.jetbrains.annotations.NotNull;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static com.mariosg92.yourclassapp.clases.AlumnoViewHolder.EXTRA_ALUMNOVH_ALUMNO;
 import static com.mariosg92.yourclassapp.clases.AlumnoViewHolder.EXTRA_ALUMNOVH_POSITION;
 
@@ -37,6 +41,7 @@ public class AlumnoDetalleActivity extends AppCompatActivity {
     private TextView txt_puntos;
     private TextView txt_codigo;
     private Button btn_back;
+    private CircleImageView img_alumnoAvatar;
     private ImageButton btn_borrar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -50,12 +55,13 @@ public class AlumnoDetalleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumno_detalle);
-
+        TinyDB tinyDB = new TinyDB(AlumnoDetalleActivity.this);
 
         txt_apellidos = findViewById(R.id.txt_apellidosDetalle);
         txt_nombre = findViewById(R.id.txt_nombreDetalle);
         txt_puntos = findViewById(R.id.txt_puntosDetalle);
         txt_codigo = findViewById(R.id.txt_codigoDetalle);
+        img_alumnoAvatar = findViewById(R.id.img_alumnoDetalle);
 
         Intent intent = getIntent();
         alumno = (Alumno) intent.getSerializableExtra(EXTRA_ALUMNOVH_ALUMNO);
@@ -67,6 +73,7 @@ public class AlumnoDetalleActivity extends AppCompatActivity {
         txt_apellidos.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
         txt_puntos.setText(String.valueOf(alumno.getPuntos()));
         txt_codigo.setText(alumno.getCodigo());
+        Glide.with(this).load(alumno.getAvatarURL()).centerCrop().into(img_alumnoAvatar);
 
         btn_back = findViewById(R.id.bt_volverDetalle);
         btn_borrar = findViewById(R.id.bt_borrarAlumno);
@@ -77,7 +84,6 @@ public class AlumnoDetalleActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TinyDB tinyDB = new TinyDB(AlumnoDetalleActivity.this);
                 tinyDB.putBoolean("detalleActivity",isDeleted);
                 tinyDB.putInt("position",position);
                 finish();
@@ -112,6 +118,9 @@ public class AlumnoDetalleActivity extends AppCompatActivity {
                             }
                         });
                         isDeleted = true;
+                        tinyDB.putBoolean("detalleActivity",isDeleted);
+                        tinyDB.putInt("position",position);
+                        finish();
                     }
                 });
                 alerta.setNegativeButton("No", new DialogInterface.OnClickListener() {

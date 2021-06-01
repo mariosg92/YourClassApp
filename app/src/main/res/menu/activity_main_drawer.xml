@@ -11,13 +11,15 @@
             android:title="@string/mis_clases"
             android:id="@+id/nav_misclases"/>
         <item
+            android:title="@string/ranking"
+            android:id="@+id/nav_ranking"/>
+        <item
             android:title="">
-            <menu>
-                <item
-                    android:title="@string/desconectar"
-                    android:id="@+id/logOutMenu"/>
-            </menu>
+        <menu>
+            <item
+                android:title="@string/desconectar"
+                android:id="@+id/logOutMenu"/>
+        </menu>
         </item>
-
     </group>
 </menu>

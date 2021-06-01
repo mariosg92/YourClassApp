@@ -45,7 +45,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardAlumnos"
+            android:id="@+id/cardRanking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -63,7 +63,7 @@
                     android:layout_width="384dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/mis_alumnos"
+                    android:text="@string/ranking_alumnos"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="16sp"

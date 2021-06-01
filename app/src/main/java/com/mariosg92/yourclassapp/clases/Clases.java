@@ -1,6 +1,19 @@
 package com.mariosg92.yourclassapp.clases;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Clases implements Serializable {
@@ -72,9 +85,30 @@ public class Clases implements Serializable {
 
     @Override
     public String toString() {
-        return "Clases{" +
-                "nombre='" + nombre + '\'' +
-                ", curso='" + curso + '\'' +
-                '}';
+        return curso+" "+nombre;
+    }
+
+    public static ArrayList<Clases> getClases(){
+        ArrayList<Clases> clases = new ArrayList<>();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("docentes").document(currentUser.getUid()).collection("clases").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            clases.clear();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String nombre = document.getString("nombre");
+                                String curso = document.getString("curso");
+                                String claseId = document.getString("claseId");
+                                Clases c1 = new Clases(nombre, curso, claseId);
+                                clases.add(c1);
+                            }
+                        }
+                    }
+                });
+        return clases;
     }
 }

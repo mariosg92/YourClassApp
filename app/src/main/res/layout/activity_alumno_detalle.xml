@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AlumnoDetalleActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_alumnoDetalle"
         android:layout_width="179dp"
         android:layout_height="162dp"
@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+         />
 
     <TextView
         android:id="@+id/txt_nombreDetalle"

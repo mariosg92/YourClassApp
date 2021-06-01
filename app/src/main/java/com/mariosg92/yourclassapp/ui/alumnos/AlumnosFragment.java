@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.mariosg92.yourclassapp.AddAlumnoActivity;
 import com.mariosg92.yourclassapp.R;
 import com.mariosg92.yourclassapp.clases.Alumno;
@@ -62,6 +64,7 @@ public class AlumnosFragment extends Fragment {
     private FirebaseAuth mAuth;
     private Clases c;
     private TinyDB tinyDB;
+
 
     public AlumnosFragment() {
         // Required empty public constructor
@@ -164,7 +167,8 @@ public class AlumnosFragment extends Fragment {
                                 long puntos = (long) document.get("puntos");
                                 String codigo = document.getString("codigo");
                                 Clases clase = c;
-                                Alumno a1 = new Alumno(nombre, apellido1, apellido2, codigo, puntos, c);
+                                String avatarURL = document.getString("avatarURL");
+                                Alumno a1 = new Alumno(nombre, apellido1, apellido2, codigo, puntos, c, avatarURL);
                                 mAdapter.Add(a1);
                             }
                         }

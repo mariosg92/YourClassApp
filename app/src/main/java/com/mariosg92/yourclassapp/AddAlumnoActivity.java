@@ -2,9 +2,9 @@ package com.mariosg92.yourclassapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,20 +18,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.mariosg92.yourclassapp.clases.Alumno;
 import com.mariosg92.yourclassapp.clases.Clases;
-import com.mariosg92.yourclassapp.ui.alumnos.AlumnosFragment;
+import com.mariosg92.yourclassapp.utils.TinyDB;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static com.mariosg92.yourclassapp.ui.alumnos.AlumnosFragment.EXTRA_ALUMNOS_ARRAY;
 import static com.mariosg92.yourclassapp.ui.alumnos.AlumnosFragment.EXTRA_CLASE_ALUMNOS;
-import static com.mariosg92.yourclassapp.ui.alumnos.AlumnosFragment.EXTRA_CURSO_ALUMNOS;
 
 public class AddAlumnoActivity extends AppCompatActivity {
 
@@ -50,6 +49,9 @@ public class AddAlumnoActivity extends AppCompatActivity {
     private String apellido1Alumno;
     private String apellido2Alumno;
     private TextView edt_errorText;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,10 @@ public class AddAlumnoActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReferenceFromUrl("gs://yourclassapp.appspot.com");
+
+
 
         Intent intent = getIntent();
         alumnosList = new ArrayList<>();
@@ -74,15 +80,24 @@ public class AddAlumnoActivity extends AppCompatActivity {
         bt_AddAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validation()) {
+                if (validation()) {
                     edt_errorText.setText("");
                     nombreAlumno = edt_nombreAlumno.getText().toString();
                     apellido1Alumno = edt_primerApellido.getText().toString();
                     apellido2Alumno = edt_segundoApellido.getText().toString();
                     String iniciales = nombreAlumno.substring(0, 1).concat(apellido1Alumno.substring(0, 1)).concat(apellido2Alumno.substring(0, 1));
                     String alumnoId = iniciales.concat(currentUser.getUid().substring(0, 3)).concat(String.valueOf((int) Math.floor(Math.random() * (100 - 1)) + 1)).toUpperCase();
-                    Alumno a = new Alumno(nombreAlumno, apellido1Alumno, apellido2Alumno, alumnoId, claseAlumno);
-                    addAlumno(a);
+                    String[] avatarList = {"1_red.png","3_green.png","4_pink.png","6_yellow.png","7_black.png","11_cyan.png"};
+                    Random r = new Random();
+                    String avatar = avatarList[r.nextInt(avatarList.length)];
+                    storageReference.child("avatar/"+avatar).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<Uri> task) {
+                            String avatarURL = task.getResult().toString();
+                            Alumno a = new Alumno(nombreAlumno, apellido1Alumno, apellido2Alumno, alumnoId, claseAlumno, avatarURL);
+                            addAlumno(a);
+                        }
+                    });
                 }
             }
         });
@@ -96,11 +111,11 @@ public class AddAlumnoActivity extends AppCompatActivity {
     }
 
 
-    public boolean validation(){
-        if((edt_nombreAlumno.length() == 0)||(edt_primerApellido.length() == 0) || (edt_segundoApellido.length() == 0)){
+    public boolean validation() {
+        if ((edt_nombreAlumno.length() == 0) || (edt_primerApellido.length() == 0) || (edt_segundoApellido.length() == 0)) {
             edt_errorText.setText("Complete todos los campos");
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -118,7 +133,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
                             Intent intent = new Intent();
                             intent.putExtra(EXTRA_ADDALUMNO_LIST, alumnosList);
                             setResult(RESULT_OK, intent);
-                            Toast.makeText(AddAlumnoActivity.this,"ALUMNO AÑADIDO",Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddAlumnoActivity.this, "ALUMNO AÑADIDO", Toast.LENGTH_LONG).show();
                             edt_nombreAlumno.setText("");
                             edt_primerApellido.setText("");
                             edt_segundoApellido.setText("");
@@ -128,7 +143,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(AddAlumnoActivity.this,"Hubo un problema en la base de datos",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddAlumnoActivity.this, "Hubo un problema en la base de datos", Toast.LENGTH_SHORT).show();
             }
         });
     }

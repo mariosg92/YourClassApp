@@ -70,9 +70,9 @@ public class LoginAlumnosActivity extends AppCompatActivity {
                     }
                     try {
                         if (a.getCodigo().equals(code)) {
-                            Intent intent = new Intent(LoginAlumnosActivity.this, AlumnoTabActivity.class);
-                            intent.putExtra(EXTRA_ALUMNO, a);
-                            startActivity(intent);
+                           // Intent intent = new Intent(LoginAlumnosActivity.this, AlumnoTabActivity.class);
+                           // intent.putExtra(EXTRA_ALUMNO, a);
+                            //startActivity(intent);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -36,7 +37,7 @@ public class AlumnoViewHolder extends RecyclerView.ViewHolder implements View.On
     public TextView txt_apellidosA;
     public TextView txt_apellidosA2;
     public TextView txt_points;
-    public ImageView img_alumno;
+    public CircleImageView img_alumno;
     public ImageView bt_addPoints;
     public ImageView bt_removePoints;
     private AlumnoAdapter alumnoAdapter;

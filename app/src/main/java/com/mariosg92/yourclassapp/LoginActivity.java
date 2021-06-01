@@ -9,12 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.jetbrains.annotations.NotNull;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -72,7 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                                 txt_error.setText("Por favor, introduzca unos datos válidos");
                             }
                         }
-                    });
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    Toast.makeText(LoginActivity.this, "Hubo un error en la base de datos", Toast.LENGTH_SHORT).show();
+                }
+            });
         }else{
             txt_error.setText("Introduzca un correo y contraseña");
         }
