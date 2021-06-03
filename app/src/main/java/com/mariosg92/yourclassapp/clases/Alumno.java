@@ -37,6 +37,13 @@ public class Alumno implements Serializable {
 
     }
 
+    public Alumno(String nombre, String apellido1, String apellido2, long puntos) {
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.puntos = puntos;
+    }
+
     public String getAvatarURL() {
         return avatarURL;
     }

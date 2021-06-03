@@ -88,27 +88,5 @@ public class Clases implements Serializable {
         return curso+" "+nombre;
     }
 
-    public static ArrayList<Clases> getClases(){
-        ArrayList<Clases> clases = new ArrayList<>();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("docentes").document(currentUser.getUid()).collection("clases").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            clases.clear();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String nombre = document.getString("nombre");
-                                String curso = document.getString("curso");
-                                String claseId = document.getString("claseId");
-                                Clases c1 = new Clases(nombre, curso, claseId);
-                                clases.add(c1);
-                            }
-                        }
-                    }
-                });
-        return clases;
-    }
+
 }
