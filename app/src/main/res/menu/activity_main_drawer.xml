@@ -6,19 +6,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
+            android:icon="@drawable/icono"
             android:title="@string/menu_home" />
         <item
-            android:title="@string/mis_clases"
-            android:id="@+id/nav_misclases"/>
+            android:id="@+id/nav_misclases"
+            android:icon="@drawable/education_computer_school_graduate"
+            android:title="@string/mis_clases" />
         <item
-            android:title="@string/ranking"
-            android:id="@+id/nav_ranking"/>
+            android:id="@+id/nav_ranking"
+            android:icon="@drawable/iconrank"
+            android:title="@string/ranking" />
+        <item
+            android:id="@+id/nav_ayuda"
+            android:icon="@drawable/education_book_learn_learning_icon_149694"
+            android:title="@string/ayuda"/>
         <item
             android:title="">
         <menu>
             <item
-                android:title="@string/desconectar"
-                android:id="@+id/logOutMenu"/>
+                android:id="@+id/logOutMenu"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="@string/desconectar" />
         </menu>
         </item>
     </group>

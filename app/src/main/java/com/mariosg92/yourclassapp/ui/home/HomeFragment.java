@@ -18,6 +18,7 @@ public class HomeFragment extends Fragment {
 
     private CardView cardClases;
     private CardView cardRanking;
+    private CardView cardHelp;
 
     public static HomeFragment newInstance(String text) {
         HomeFragment frag = new HomeFragment();
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
 
         cardClases = layout.findViewById(R.id.cardClases);
         cardRanking = layout.findViewById(R.id.cardRanking);
+        cardHelp = layout.findViewById(R.id.cardAyuda);
         try {
             cardClases.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,6 +47,12 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Navigation.findNavController(v).navigate(R.id.nav_ranking);
+                }
+            });
+            cardHelp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).navigate(R.id.nav_ayuda);
                 }
             });
         }catch(Exception e){

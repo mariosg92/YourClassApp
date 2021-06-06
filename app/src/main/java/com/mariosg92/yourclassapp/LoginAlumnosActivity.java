@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class LoginAlumnosActivity extends AppCompatActivity {
 
-    private static final String EXTRA_ALUMNO = "com.mariosg92.LoginAlumnoActivity.Alumno";
+    public static final String EXTRA_ALUMNO = "com.mariosg92.LoginAlumnoActivity.Alumno";
     private Button bt_login;
     private Button bt_back;
     private EditText edt_codigo;
@@ -51,6 +51,13 @@ public class LoginAlumnosActivity extends AppCompatActivity {
                 validationCode(codigo);
             }
         });
+
+        bt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void validationCode(String code) {
@@ -65,14 +72,15 @@ public class LoginAlumnosActivity extends AppCompatActivity {
                         a.setApellido1((String) document.get("apellido1"));
                         a.setApellido2((String) document.get("apellido2"));
                         a.setPuntos((Long) document.get("puntos"));
+                        a.setAvatarURL((String) document.get("avatarURL"));
                         a.setClase(new Clases((String) document.get("clase.nombre"),(String) document.get("clase.curso"),(String) document.get("clase.claseId")));
                         a.setCodigo((String) document.get("codigo"));
                     }
                     try {
                         if (a.getCodigo().equals(code)) {
-                           // Intent intent = new Intent(LoginAlumnosActivity.this, AlumnoTabActivity.class);
-                           // intent.putExtra(EXTRA_ALUMNO, a);
-                            //startActivity(intent);
+                            Intent intent = new Intent(LoginAlumnosActivity.this, AlumnoTabActivity.class);
+                            intent.putExtra(EXTRA_ALUMNO, a);
+                            startActivity(intent);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

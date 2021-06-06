@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:paddingTop="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,21 +23,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Nombre"
-            android:paddingStart="5dp" />
+            android:paddingStart="5dp"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/txt_apellidosA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellidos"
-            android:paddingStart="5dp" />
+            android:paddingStart="5dp"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/txt_apellidosA2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellido2"
-            android:paddingStart="5dp" />
+            android:paddingStart="5dp"
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +52,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Puntos:" />
+                android:text="Puntos:"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/txt_points"
@@ -55,7 +61,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:hint="puntos"
-                android:paddingStart="5dp" />
+                android:paddingStart="5dp"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout

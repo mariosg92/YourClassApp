@@ -28,6 +28,12 @@
     <string name="title_activity_alumno_tab">AlumnoTabActivity</string>
     <string name="tab_text_1">HOME</string>
     <string name="tab_text_2">RANKING</string>
+    <string name="tab_text_3">RECOMPENSAS</string>
     <string name="ranking_alumnos">Ranking Alumnos</string>
     <string name="ranking">Ranking</string>
+    <string name="bienvenido">BIENVENIDO</string>
+    <string name="todo">TODO</string>
+    <string name="volver">VOLVER</string>
+    <string name="loadsplashimg">loadsplashimg</string>
+    <string name="ayuda">Ayuda</string>
 </resources>

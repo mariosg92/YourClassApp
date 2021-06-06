@@ -153,8 +153,29 @@ public class AlumnosFragment extends Fragment {
     }
 
     private void getAlumnos(Clases c) {
-        db.collection("docentes").document(currentUser.getUid()).collection("clases").document(c.getClaseId())
+       /* db.collection("docentes").document(currentUser.getUid()).collection("clases").document(c.getClaseId())
                 .collection("alumnos").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            alumnosList.clear();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String nombre = document.getString("nombre");
+                                String apellido1 = document.getString("apellido1");
+                                String apellido2 = document.getString("apellido2");
+                                long puntos = (long) document.get("puntos");
+                                String codigo = document.getString("codigo");
+                                Clases clase = c;
+                                String avatarURL = document.getString("avatarURL");
+                                Alumno a1 = new Alumno(nombre, apellido1, apellido2, codigo, puntos, c, avatarURL);
+                                mAdapter.Add(a1);
+                            }
+                        }
+                    }
+                });
+        */
+        db.collection("alumnos").whereEqualTo("clase.claseId",c.getClaseId()).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {

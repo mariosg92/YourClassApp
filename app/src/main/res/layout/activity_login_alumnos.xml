@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="@color/fondo"
     tools:context=".LoginAlumnosActivity">
 
     <EditText
@@ -25,6 +27,7 @@
         android:layout_marginTop="248dp"
         android:gravity="center_horizontal"
         android:text="Introduzca su código de alumno"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -35,7 +35,7 @@
             android:id="@+id/bt_borrar"
             android:layout_width="32dp"
             android:layout_height="34dp"
-            android:layout_marginEnd="52dp"
+            android:layout_marginEnd="76dp"
             app:layout_constraintBottom_toBottomOf="@+id/txt_clase"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txt_clase"

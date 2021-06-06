@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edt_username;
     private EditText edt_password;
+    private Button bt_back;
     private FirebaseAuth mAuth;
     private TextView txt_error;
 
@@ -40,6 +42,14 @@ public class LoginActivity extends AppCompatActivity {
         edt_password = findViewById(R.id.loginPassword);
         txt_error = findViewById(R.id.txt_loginError);
         mAuth = FirebaseAuth.getInstance();
+        bt_back = findViewById(R.id.bt_back_inicio);
+
+        bt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
      @Override
@@ -96,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user.isEmailVerified()) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
+            finish();
         }else{
             mAuth.signOut();
             txt_error.setText("Verifique su correo para poder conectar.");

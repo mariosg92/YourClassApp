@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="@color/fondo"
     tools:context=".DoneActivity">
 
     <TextView
@@ -13,6 +15,7 @@
         android:layout_marginTop="160dp"
         android:text="TextView"
         android:textAlignment="center"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +25,8 @@
         android:id="@+id/bt_backLogin"
         android:layout_width="171dp"
         android:layout_height="40dp"
-        android:text="volver a login"
         android:onClick="goLogin"
+        android:text="volver a login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

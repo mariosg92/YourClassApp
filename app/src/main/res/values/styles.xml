@@ -7,4 +7,5 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:ems">10</item>
     </style>
+
 </resources>

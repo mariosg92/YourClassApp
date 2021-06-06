@@ -4,13 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="@color/fondo"
     tools:context=".ui.alumnos.AlumnosFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_alumnos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/fondo"
         app:layout_constraintBottom_toTopOf="@+id/bt_AddAlumno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
