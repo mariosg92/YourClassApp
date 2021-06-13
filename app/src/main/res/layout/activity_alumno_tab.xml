@@ -47,6 +47,8 @@
         android:layout_marginBottom="5dp"
         android:backgroundTint="@color/color2"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_lock_power_off" />
+        app:srcCompat="@android:drawable/ic_lock_power_off"
+        android:contentDescription="@string/todo"
+        android:focusable="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

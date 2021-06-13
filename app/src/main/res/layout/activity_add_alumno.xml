@@ -8,47 +8,61 @@
     android:backgroundTint="#D8F1BB"
     tools:context=".AddAlumnoActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/loadsplashimg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icono2" />
+
     <EditText
         android:id="@+id/edt_NombreAlumno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="80dp"
         android:ems="10"
-        android:hint="Nombre"
+        android:hint="@string/nombre"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/edt_PrimerApellidoAlumno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Primer Apellido"
+        android:hint="@string/primer_apellido"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_NombreAlumno" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_NombreAlumno"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/edt_SegundoApellidoAlumno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Segundo Apellido"
+        android:hint="@string/segundo_apellido"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_PrimerApellidoAlumno" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_PrimerApellidoAlumno"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/bt_AddAlumno2"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginTop="8dp"
-        android:text="AÑADIR ALUMNO"
+        android:text="@string/a_adir_alumno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +72,7 @@
         android:id="@+id/bt_volver"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:text="VOLVER"
+        android:text="@string/volver"
         app:layout_constraintEnd_toEndOf="@+id/bt_AddAlumno2"
         app:layout_constraintStart_toStartOf="@+id/bt_AddAlumno2"
         app:layout_constraintTop_toBottomOf="@+id/bt_AddAlumno2" />

@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
     public void goRecoverPass(View view) {
         Intent intent = new Intent(this, RecoveryActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void goWelcome(FirebaseUser user){

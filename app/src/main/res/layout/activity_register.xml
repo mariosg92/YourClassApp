@@ -13,47 +13,52 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nombre de usuario"
+        android:hint="@string/nombre_de_usuario"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintVertical_bias="0.15"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/regEmail"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Correo electrónico"
-        android:inputType="textPersonName"
+        android:hint="@string/correo_electr_nico"
+        android:inputType="textPersonName|textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/regUser"
         app:layout_constraintStart_toStartOf="@+id/regUser"
-        app:layout_constraintTop_toBottomOf="@+id/regUser" />
+        app:layout_constraintTop_toBottomOf="@+id/regUser"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/regPass"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/contrase_a"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/regEmail"
         app:layout_constraintStart_toStartOf="@+id/regEmail"
-        app:layout_constraintTop_toBottomOf="@+id/regEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/regEmail"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/regPassConfirm"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Confirmar contraseña"
+        android:hint="@string/confirmar_contrase_a"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/regPass"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/regPass"
-        app:layout_constraintTop_toBottomOf="@+id/regPass" />
+        app:layout_constraintTop_toBottomOf="@+id/regPass"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/regSignup"
@@ -61,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:onClick="signUp"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/regPassConfirm"
         app:layout_constraintHorizontal_bias="0.0"
@@ -91,6 +96,18 @@
         app:layout_constraintEnd_toEndOf="@+id/regSignup"
         app:layout_constraintStart_toStartOf="@+id/regSignup"
         app:layout_constraintTop_toBottomOf="@+id/regSignup"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:contentDescription="@string/todo" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icono2"
+        android:contentDescription="@string/todo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

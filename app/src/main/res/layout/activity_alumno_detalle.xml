@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:text="VOLVER"
+        android:text="@string/volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,7 +35,8 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_alumnoDetalle"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:contentDescription="@string/todo" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -57,7 +58,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre: "
+                android:text="@string/nombre2"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -78,7 +79,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apellidos: "
+                android:text="@string/apellidos"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -99,7 +100,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Puntos: "
+                android:text="@string/puntos"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -121,7 +122,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CÓDIGO: "
+                android:text="@string/c_digo"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

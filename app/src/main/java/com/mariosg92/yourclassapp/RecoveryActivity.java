@@ -37,4 +37,10 @@ public class RecoveryActivity extends AppCompatActivity {
 
         }
     }
+
+    public void backToLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
