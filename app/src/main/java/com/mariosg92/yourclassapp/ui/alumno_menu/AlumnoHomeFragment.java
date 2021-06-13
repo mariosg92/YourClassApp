@@ -1,5 +1,6 @@
 package com.mariosg92.yourclassapp.ui.alumno_menu;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +51,8 @@ public class AlumnoHomeFragment extends Fragment {
     private StorageReference storageReference;
     private Alumno a;
     private FirebaseFirestore db;
+    AlertDialog.Builder builder;
+    AlertDialog progressDialog;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -77,6 +82,8 @@ public class AlumnoHomeFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     cargarImagen(v);
+                    progressDialog = getDialogProgressBar().create();
+                    progressDialog.show();
                 }catch(Exception e){
                     Toast.makeText(getContext(),"Error al subir archivo", Toast.LENGTH_SHORT).show();
                 }
@@ -117,6 +124,7 @@ public class AlumnoHomeFragment extends Fragment {
                                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                                     a.setAvatarURL(avatarURL);
                                     Glide.with(getContext()).load(avatarURL).into(avatar);
+                                    progressDialog.dismiss();
                                 }
                             });
                         }
@@ -125,5 +133,23 @@ public class AlumnoHomeFragment extends Fragment {
             });
 
         }
+    }
+
+
+    public AlertDialog.Builder getDialogProgressBar() {
+
+        if (builder == null) {
+            builder = new AlertDialog.Builder(getActivity());
+
+            builder.setTitle("Cargando...");
+
+            final ProgressBar progressBar = new ProgressBar(getActivity());
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            progressBar.setLayoutParams(lp);
+            builder.setView(progressBar);
+        }
+        return builder;
     }
 }

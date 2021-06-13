@@ -16,8 +16,10 @@
         <activity
             android:name=".AlumnoTabActivity"
             android:label="@string/title_activity_alumno_tab"
-            android:theme="@style/Theme.YourClassApp.NoActionBar"></activity>
-        <activity android:name=".LoginAlumnosActivity" />
+            android:theme="@style/Theme.YourClassApp.NoActionBar"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".LoginAlumnosActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AlumnoDetalleActivity"
             android:screenOrientation="portrait" />
