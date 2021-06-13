@@ -1,4 +1,4 @@
-package com.mariosg92.yourclassapp.ui.help;
+package com.mariosg92.yourclassapp.ui.alumno_menu;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.mariosg92.yourclassapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AyudaFragment#newInstance} factory method to
+ * Use the {@link AlumnoRecompensasFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AyudaFragment extends Fragment {
+public class AlumnoRecompensasFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class AyudaFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AyudaFragment() {
+    public AlumnoRecompensasFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class AyudaFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AyudaFragment.
+     * @return A new instance of fragment AlumnoRecompensasFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AyudaFragment newInstance(String param1, String param2) {
-        AyudaFragment fragment = new AyudaFragment();
+    public static AlumnoRecompensasFragment newInstance(String param1, String param2) {
+        AlumnoRecompensasFragment fragment = new AlumnoRecompensasFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class AyudaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ayuda, container, false);
+        return inflater.inflate(R.layout.fragment_alumno_recompensas, container, false);
     }
 }

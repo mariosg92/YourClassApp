@@ -70,6 +70,20 @@ public class ClasesViewHolder extends RecyclerView.ViewHolder implements View.On
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dRef.collection("clases").document(clase.getClaseId()).delete();
+                                    //Borrado de los alumnos que pertenezcan a la clase borrada de la colección de alumnos
+                                    clasesAdapter.getDb().collection("alumnos").whereEqualTo("clase.claseId",clase.getClaseId()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                            if(task.isSuccessful()){
+                                                for(QueryDocumentSnapshot document: task.getResult()){
+                                                    String codigo = document.getString("codigo");
+                                                    if(codigo != null) {
+                                                        clasesAdapter.getDb().collection("alumnos").document(codigo).delete();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
                                     clases.remove(mPosition);
                                     clasesAdapter.notifyItemRemoved(mPosition);
                                     Log.i("BORRADO", "BORRADO CORRECTAMENTE");

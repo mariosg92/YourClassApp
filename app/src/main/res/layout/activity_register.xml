@@ -86,7 +86,7 @@
         android:layout_width="57dp"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/purple_500"
+        android:backgroundTint="@color/color1"
         android:onClick="backToLogin"
         app:layout_constraintEnd_toEndOf="@+id/regSignup"
         app:layout_constraintStart_toStartOf="@+id/regSignup"

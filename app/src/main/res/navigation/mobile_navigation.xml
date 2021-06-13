@@ -25,10 +25,5 @@
         android:name="com.mariosg92.yourclassapp.ui.ranking.RankingFragment"
         android:label="@string/ranking"
         tools:layout="@layout/fragment_ranking" />
-    <fragment
-        android:id="@+id/nav_ayuda"
-        android:name="com.mariosg92.yourclassapp.ui.help.AyudaFragment"
-        android:label="Ayuda"
-        tools:layout="@layout/fragment_ayuda" />
 
 </navigation>

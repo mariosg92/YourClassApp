@@ -25,12 +25,16 @@ public class RecoveryActivity extends AppCompatActivity {
     }
 
     public void recoverPass(View view) {
-        String emailRecover = email.getText().toString();
-        mAuth.sendPasswordResetEmail(emailRecover);
-        Intent intent = new Intent(this, DoneActivity.class);
-        String message = "Se le ha enviado un correo a la dirección "+emailRecover+" para resetear su contraseña.";
-        intent.putExtra(EXTRA_MAILRECOVER,message);
-        startActivity(intent);
-        finish();
+        try {
+            String emailRecover = email.getText().toString();
+            mAuth.sendPasswordResetEmail(emailRecover);
+            Intent intent = new Intent(this, DoneActivity.class);
+            String message = "Se le ha enviado un correo a la dirección " + emailRecover + " para resetear su contraseña.";
+            intent.putExtra(EXTRA_MAILRECOVER, message);
+            startActivity(intent);
+            finish();
+        }catch(Exception e){
+
+        }
     }
 }

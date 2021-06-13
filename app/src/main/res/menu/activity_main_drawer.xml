@@ -17,9 +17,9 @@
             android:icon="@drawable/iconrank"
             android:title="@string/ranking" />
         <item
-            android:id="@+id/nav_ayuda"
-            android:icon="@drawable/education_book_learn_learning_icon_149694"
-            android:title="@string/ayuda"/>
+            android:id="@+id/nav_rewards"
+            android:icon="@drawable/reward"
+            android:title="@string/recompensas" />
         <item
             android:title="">
         <menu>

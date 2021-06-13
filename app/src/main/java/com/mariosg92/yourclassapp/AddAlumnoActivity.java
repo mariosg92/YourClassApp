@@ -87,7 +87,7 @@ public class AddAlumnoActivity extends AppCompatActivity {
                     apellido2Alumno = edt_segundoApellido.getText().toString();
                     String iniciales = nombreAlumno.substring(0, 1).concat(apellido1Alumno.substring(0, 1)).concat(apellido2Alumno.substring(0, 1));
                     String alumnoId = iniciales.concat(currentUser.getUid().substring(0, 3)).concat(String.valueOf((int) Math.floor(Math.random() * (100 - 1)) + 1)).toUpperCase();
-                    String[] avatarList = {"1_red.png","3_green.png","4_pink.png","6_yellow.png","7_black.png","11_cyan.png"};
+                    String[] avatarList = {"1.png","2.png","3.png","4.png","6.png","7.png","8.png","9.png","10.png","11.png","12.png"};
                     Random r = new Random();
                     String avatar = avatarList[r.nextInt(avatarList.length)];
                     storageReference.child("avatar/"+avatar).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -105,7 +106,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoViewHolder> {
     public void onBindViewHolder(@NonNull @NotNull AlumnoViewHolder holder, int position) {
         if(listaAlumnos != null){
             Alumno alumnoActual = listaAlumnos.get(position);
-            Glide.with(c).load(alumnoActual.getAvatarURL()).centerCrop().into(holder.img_alumno);
+            Glide.with(c).load(alumnoActual.getAvatarURL()).fitCenter().into(holder.img_alumno);
             holder.txt_nombreA.setText(alumnoActual.getNombre());
             holder.txt_apellidosA.setText(alumnoActual.getApellido1());
             holder.txt_apellidosA2.setText(alumnoActual.getApellido2());

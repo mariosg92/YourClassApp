@@ -28,6 +28,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="#E8EDE2"
             app:cardCornerRadius="8dp"
             app:cardElevation="6dp">
 
@@ -56,6 +57,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="#E8EDE2"
             app:cardCornerRadius="8dp"
             app:cardElevation="6dp">
 
@@ -80,12 +82,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardAyuda"
+            android:id="@+id/cardReward"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="#E8EDE2"
             app:cardCornerRadius="8dp"
             app:cardElevation="6dp">
 
@@ -98,12 +101,12 @@
                     android:layout_width="360dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/ayuda"
+                    android:text="@string/recompensas"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:drawableTopCompat="@drawable/education_book_learn_learning_icon_149694" />
+                    app:drawableTopCompat="@drawable/reward" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

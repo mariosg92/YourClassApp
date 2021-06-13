@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mariosg92.yourclassapp.R;
 
 public class HomeFragment extends Fragment {
@@ -18,7 +19,7 @@ public class HomeFragment extends Fragment {
 
     private CardView cardClases;
     private CardView cardRanking;
-    private CardView cardHelp;
+    private CardView cardReward;
 
     public static HomeFragment newInstance(String text) {
         HomeFragment frag = new HomeFragment();
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment {
 
         cardClases = layout.findViewById(R.id.cardClases);
         cardRanking = layout.findViewById(R.id.cardRanking);
-        cardHelp = layout.findViewById(R.id.cardAyuda);
+        cardReward = layout.findViewById(R.id.cardReward);
         try {
             cardClases.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -49,10 +50,11 @@ public class HomeFragment extends Fragment {
                     Navigation.findNavController(v).navigate(R.id.nav_ranking);
                 }
             });
-            cardHelp.setOnClickListener(new View.OnClickListener() {
+            cardReward.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Navigation.findNavController(v).navigate(R.id.nav_ayuda);
+                    Snackbar.make(v, "Implementación en futuro Release", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
             });
         }catch(Exception e){
